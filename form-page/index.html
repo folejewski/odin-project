@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form page</title>
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="brand">
+            <a class="logo-container-overlay" href="https://www.theodinproject.com/">
+                <div class="logo-container">
+                    <img src="./assets/odin-lined.png" alt="Odin Project logo">
+                    <p>ODIN</p>
+                </div>
+            </a>
+            <small class="credit">
+                Photo by <a href="https://unsplash.com/@haliewestphoto">Halie West</a> on <a href="https://unsplash.com/photos/green-leaf-plant-in-close-up-photography-25xggax4bSA">Unsplash</a>
+            </small>
+        </div>
+
+        <main>
+            <p class="intro main-item"> This is not a real online service! You know you need something like this in your life to help you realize your deepest dreams.<br> Sign up <em>now</em> to get started. </p>
+            <p class="intro main-item"> You <em>know</em> you want to. </p>
+            <form action="" method="get" id="sign-up" autocomplete="on">
+                <h1 class="form-heading main-item">Let's do this!</h1>
+                <div class="form-row main-item">
+                    <div class="form-item">
+                        <label for="name">First name</label>
+                        <input required type="text" id="name" name="name" autocomplete="given-name">
+                    </div>
+                    <div class="form-item">
+                        <label for="surname">Last name</label>
+                        <input required type="text" id="surname" name="surname" autocomplete="family-name">
+                    </div>
+                </div>
+                <div class="form-row main-item">
+                    <div class="form-item">
+                        <label for="email">Email</label>
+                        <input required type="email" id="email" name="email" autocomplete="email">
+                    </div>
+                    <div class="form-item">
+                        <label for="phone">Phone Number</label>
+                        <input required type="tel" id="phone" name="phone" autocomplete="tel" maxlength="10" pattern="^\d{10}$">
+                    </div>
+                </div>
+                <div class="form-row main-item">
+                    <div class="form-item">
+                        <label for="password">Password</label>
+                        <input required type="password" id="password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}" title="Password must contain one number, one underscore letter, one uppercase letter, one special character and be at least 8 characters long.">
+                    </div>
+                    <div class="form-item">
+                        <label for="confirmed_password">Confirm Password</label>
+                        <input required type="password" id="confirmed_password" name="confirmed_password">
+                    </div>
+                </div>
+            </form>
+            <button class="main-item" type="submit" form="sign-up">Create Account</button>
+            <p class="log-in main-item">Already have an account? <a href="">Log in</a></p>
+        </main>
+    </div>
+    
+</body>
+</html>

@@ -1,0 +1,172 @@
+@font-face {
+    font-family: 'Norse';
+    src: url('assets/Norse.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('assets/Roboto-Medium.ttf') format('truetype');
+}
+
+/* reset */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+body { line-height: 1.5; }
+
+input, button { font: inherit; }
+/* reset end */
+
+body {
+    font-family: Roboto, sans-serif;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+.brand {
+    background-image: url(./assets/background.png);
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+    flex-grow: 0.5;
+    min-width: 37%;
+}
+
+.logo-container-overlay {
+    margin-top: 22vh;
+    height: 110px;
+    background-color: rgba(0, 0, 0, 0.3);
+    color: inherit;
+}
+
+.logo-container-overlay, .log-in > a { 
+    text-decoration: none; 
+}
+
+.logo-container {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-container img{
+    max-height: 85%;
+    max-width: 30%;
+}
+
+.logo-container p {
+    font-family: Norse, sans-serif;
+    font-size: min(9vw, 4.5rem);
+    line-height: 1;
+}
+
+.credit {
+    margin: auto;
+    margin-bottom: 1.5vh;
+    text-align: center;
+    color: rgb(255, 255, 255);
+    font-size: 0.6rem;
+    a { color: inherit; }
+}
+
+main {
+    flex-grow: 1.5;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 3%;
+    background-color: rgb(247, 252, 255);
+}
+
+.main-item {
+    margin-left: max(30px, 5%);
+}
+
+.intro {
+    font-size: 1rem;
+    line-height: 1.2;
+    max-width: max(77%, 400px);
+    margin-right: 10px;
+    font-weight: bold;
+    &:first-of-type {
+        margin-top: 125px;
+        /* margin-top: 22vh;
+        I like this more, but the solution looks different
+         */
+    }
+}
+
+form {
+    height: auto;
+    background-color: #fff;
+    box-shadow: 0 4px 4px rgb(211, 211, 211);
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    font-size: 0.5rem;
+    padding: 1.5% 0 4%; 
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.form-row {
+    display: flex;
+    gap: 8%;
+}
+
+.form-item {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    max-width: 31%;
+    label {
+        text-transform: uppercase;
+        color: rgba(0, 0, 0, 0.837);
+        font-size: 0.6rem;
+        font-weight: bold;
+    }
+    input{
+        border: 1px solid #E5E7EB;
+        border-radius: 3px;
+        height: 23px;
+        padding-left: 8px;
+        font-size: 0.7rem;
+        &:focus {
+            outline: 1px solid blue;
+            box-shadow: 1px 1px 2px black;
+        }
+        &:user-invalid {
+            outline: 1px solid red;
+        }
+    }
+}
+
+button {
+    background-color: #596D48;
+    border: none;
+    border-radius: 7px;
+    padding: 0.5rem 2.5rem;
+    color: #fff;
+    box-shadow: 1px 2px 2px rgb(224, 224, 224);
+    font-size: 0.8rem;
+    margin-top: 6px;
+}
+
+.log-in {
+    margin-bottom: auto;
+    font-size: 0.8rem;
+}
+
+.log-in a {
+    color: #596D48;
+    &:visited {
+        color: #596D48;
+    }
+}
