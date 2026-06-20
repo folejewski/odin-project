@@ -8,7 +8,7 @@ Exercises and projects completed while working through The Odin Project's Full S
 A sign up page built to practice forms.
 
 #### Live preview
-ADD LINK
+https://folejewski.github.io/odin-project/form-page/index.html
 
 #### What I practiced
 - CSS `@font-face` for custom fonts (Norse, Roboto)
