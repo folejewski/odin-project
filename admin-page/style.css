@@ -29,6 +29,11 @@ img {
     border-radius: 50%;
 }
 
+svg {
+    fill: pink;
+    width: 25px;
+}
+
 /* for drafts end */
 
 .container {
