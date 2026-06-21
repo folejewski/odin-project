@@ -1,10 +1,13 @@
 const submit = document.querySelector("#submit");
+const formToggleButton = document.querySelector("#toggleButton");
+const form = document.querySelector(".form");
 const bookForm = document.getElementById("bookForm");
+const libraryGrid = document.body.querySelector(".library-grid");
 
 submit.addEventListener("click", addBookToLibrary);
+formToggleButton.addEventListener("click", toggleForm);
 
 const myLibrary = [];
-let wasReadValue;
 
 function Book(author, title, numberOfPages, wasRead) {
     if (!new.target) {
@@ -21,25 +24,62 @@ function Book(author, title, numberOfPages, wasRead) {
 function addBookToLibrary(event) {
     event.preventDefault();
     const formData = new FormData(bookForm);
-    for (const [key, value] of formData) {
-        console.log(`${key}: ${value}\n`);
-    }
-    console.log(formData.get("author"));
-    console.log(formData.get("title"));
-    console.log(formData.get("numberOfPages"));
-    console.log(formData.get("wasRead"));
-    if (formData.get("wasRead") === "on") {
-        wasReadValue = true;
-    } else {
-        wasReadValue = false;
-    }
+    const wasReadValue = formData.get("wasRead") === "on";
     const book = new Book(formData.get("author"), formData.get("title"), parseInt(formData.get("numberOfPages")), wasReadValue)
     myLibrary.push(book);
+    renderLibrary()
 }
+
+function renderLibrary() {
+  libraryGrid.innerHTML = "";
+
+  myLibrary.forEach((book, index) => {
+
+    const bookCard = document.createElement("div");
+    bookCard.classList.add("book-card");
+
+    bookCard.innerHTML = `
+    <h2>${index + 1}</h2>
+    <div>
+        <p>${book.author}</p>
+        <p>${book.title}</p>
+        <p>${book.numberOfPages}</p>
+        <p>${book.wasRead ? "Read" : "Not read yet"}</p>
+        <button type="button" class="toggle-read-status" onclick="toggleReadStatus('${book.id}')">Toggle Read Status</button>
+        <button type="button" class="book-delete" onclick="deleteBook('${book.id}')">Delete Book</button>
+    </div>
+    `
+
+    libraryGrid.appendChild(bookCard);
+    }
+    )
+}
+
+function toggleForm() {
+  if (form.style.display === "none") {
+    form.style.display = "block";
+  } else {
+    form.style.display = "none";
+  }
+}
+
+function toggleReadStatus(id) {
+    const book = myLibrary.find((book) => book.id === id);
+    if (book) {
+        book.wasRead = !book.wasRead;
+        renderLibrary();
+    }
+}
+
+function deleteBook(id) {
+    const index = myLibrary.findIndex((book) => book.id === id);
+    if (index !== -1) {
+        myLibrary.splice(index, 1);
+        renderLibrary();
+    }
+}
+
 // to do later
 // 1 clean up js
-// 2 add showing books on html and adding books to library changing if they are in the array or not
-// 3 make the html pretty
-// 4 toggle the read button and delete book button for each book
-// 5 change the file to typescript
-
+// 2 make the html pretty
+// 3 change the file to typescript
