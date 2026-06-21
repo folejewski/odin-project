@@ -1,3 +1,97 @@
-h1 {
-    color: blue;
+@font-face {
+    font-family: 'Roboto';
+    src: url('assets/Roboto-Medium.ttf') format('truetype');
+}
+
+/* reset */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    /* for drafts */
+    border: 1px solid red;
+    /* for drafts ends */
+}
+
+body { line-height: 1.5; }
+
+input, button { font: inherit; }
+/* reset end */
+
+:root {
+    font-family: Roboto, sans-serif;
+}
+
+/* for drafts */
+
+img {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+}
+
+/* for drafts end */
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    grid-template-rows: 1fr 4fr;
+    height: 100vh;
+}
+
+.sidebar {
+    background-color: #0000ff;
+    grid-row: 1/ 3;
+    grid-column: 1 / 2;
+}
+
+.header {
+    background-color: #fff;
+    grid-column: 2 / 3;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+}
+
+ul {
+    padding: 0;
+}
+
+ul > li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.content {
+    background-color: #e6e6e6;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 15px;
+}
+
+.projects-container{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.projects .card {
+    background-color: #fff;
+    padding: 15px;
+}
+
+.announcements-container {
+    background-color: #fff;
+    grid-row: 1 / 2;
+}
+
+.trending-container {
+    background-color: #fff;
+}
+
+.projects {
+    grid-row: 1/ 3;
 }

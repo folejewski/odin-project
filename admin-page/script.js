@@ -1,1 +1,0 @@
-alert("checking if JS is connected correctly ");
