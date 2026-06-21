@@ -8,6 +8,7 @@ submit.addEventListener("click", addBookToLibrary);
 formToggleButton.addEventListener("click", toggleForm);
 
 const myLibrary = [];
+renderLibrary();
 
 function Book(author, title, numberOfPages, wasRead) {
     if (!new.target) {
@@ -21,38 +22,46 @@ function Book(author, title, numberOfPages, wasRead) {
     this.wasRead = wasRead;
 }
 
+Book.prototype.toggleRead = function() {
+    this.wasRead = !this.wasRead;
+};
+
 function addBookToLibrary(event) {
     event.preventDefault();
     const formData = new FormData(bookForm);
     const wasReadValue = formData.get("wasRead") === "on";
-    const book = new Book(formData.get("author"), formData.get("title"), parseInt(formData.get("numberOfPages")), wasReadValue)
+    const book = new Book(formData.get("author"), formData.get("title"), parseInt(formData.get("numberOfPages")), wasReadValue);
     myLibrary.push(book);
-    renderLibrary()
+    renderLibrary();
 }
 
 function renderLibrary() {
-  libraryGrid.innerHTML = "";
+    libraryGrid.innerHTML = "";
 
-  myLibrary.forEach((book, index) => {
-
-    const bookCard = document.createElement("div");
-    bookCard.classList.add("book-card");
-
-    bookCard.innerHTML = `
-    <h2>${index + 1}</h2>
-    <div>
-        <p>${book.author}</p>
-        <p>${book.title}</p>
-        <p>${book.numberOfPages}</p>
-        <p>${book.wasRead ? "Read" : "Not read yet"}</p>
-        <button type="button" class="toggle-read-status" onclick="toggleReadStatus('${book.id}')">Toggle Read Status</button>
-        <button type="button" class="book-delete" onclick="deleteBook('${book.id}')">Delete Book</button>
-    </div>
-    `
-
-    libraryGrid.appendChild(bookCard);
+    if (myLibrary.length === 0) {
+        libraryGrid.innerHTML = "<p>No books yet — add one above!</p>";
+        return;
     }
-    )
+
+    myLibrary.forEach((book, index) => {
+
+        const bookCard = document.createElement("div");
+        bookCard.classList.add("book-card");
+
+        bookCard.innerHTML = `
+        <h2>${index + 1}</h2>
+        <div>
+            <p>${book.author}</p>
+            <p>${book.title}</p>
+            <p>${book.numberOfPages}</p>
+            <p>${book.wasRead ? "Read" : "Not read yet"}</p>
+            <button type="button" class="toggle-read-status" onclick="toggleReadStatus('${book.id}')">Toggle Read Status</button>
+            <button type="button" class="book-delete" onclick="deleteBook('${book.id}')">Delete Book</button>
+        </div>
+        `
+
+        libraryGrid.appendChild(bookCard);
+    })
 }
 
 function toggleForm() {
@@ -66,7 +75,7 @@ function toggleForm() {
 function toggleReadStatus(id) {
     const book = myLibrary.find((book) => book.id === id);
     if (book) {
-        book.wasRead = !book.wasRead;
+        book.toggleRead(); 
         renderLibrary();
     }
 }
