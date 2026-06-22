@@ -1,3 +1,100 @@
+/* reset */
+@font-face {
+    font-family: "Playwrite";
+    src: url(./assets/PlaywritePL-VariableFont_wght.ttf) format("truetype");
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+:root {
+    font-size: 16px;
+    font-family: Playwrite, sans-serif;
+}
+
+body { 
+    line-height: 1.5; 
+    height: 100vh;
+}
+
+input, button { font: inherit; }
+
+/* reset end */
+
+header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+}
+
+.input {
+    display: flex;
+    flex-direction: column;
+}
+
 .form {
     display: none;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+#bookForm {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+        "heading  heading"
+        "author   title"
+        "pages    wasRead"
+        "submit   submit";
+    gap: 1rem;
+    padding: 1rem;
+}
+
+h2 { 
+    grid-area: heading; 
+}
+
+.input:nth-child(2) {
+    grid-area: author; 
+}
+
+.input:nth-child(3) {
+    grid-area: title;
+}
+
+.input:nth-child(4) {
+    grid-area: pages;
+}
+
+.input:nth-child(5) {
+    grid-area: wasRead; 
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+}
+
+input[type="submit"] { grid-area: submit; }
+
+.library-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.book-card {
+    border: 1px solid black;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.book-card * {
+    padding: 0.25rem;
+}
+
+.button-container {
+    display: flex;
+    gap: 1rem;
 }

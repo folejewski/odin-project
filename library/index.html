@@ -8,21 +8,26 @@
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
+    <header>
+        <h1>My Library</h1>
+        <button type="button" id="toggleButton">Toggle Form</button>
+    </header>
     <div class="form">
         <form id="bookForm" action="" method="get">
-            <div>
+            <h2>Add a book</h2>
+            <div class="input">
                 <label for="author">Author</label>
                 <input type="text" name="author" id="author" required />
             </div>
-            <div>
+            <div class="input">
                 <label for="title">Title</label>
                 <input type="text" name="title" id="title" required />
             </div>
-            <div>
+            <div class="input">
                 <label for="numberOfPages">Number of pages</label>
                 <input type="number" name="numberOfPages" id="numberOfPages" required min="1" />
             </div>
-            <div>
+            <div class="input">
                 <label for="wasRead">Have you read it</label>
                 <input type="checkbox" name="wasRead" id="wasRead"/>
             </div>
@@ -30,7 +35,6 @@
         </form>
     </div>
 
-    <button type="button" id="toggleButton">Toggle Form</button>
     <div class="library-grid">
 
     </div>

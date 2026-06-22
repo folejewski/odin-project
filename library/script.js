@@ -39,7 +39,7 @@ function renderLibrary() {
     libraryGrid.innerHTML = "";
 
     if (myLibrary.length === 0) {
-        libraryGrid.innerHTML = "<p>No books yet — add one above!</p>";
+        libraryGrid.innerHTML = "<p>No books yet. You can add one above!</p>";
         return;
     }
 
@@ -53,10 +53,12 @@ function renderLibrary() {
         <div>
             <p>${book.author}</p>
             <p>${book.title}</p>
-            <p>${book.numberOfPages}</p>
+            <p>${book.numberOfPages} pages</p>
             <p>${book.wasRead ? "Read" : "Not read yet"}</p>
-            <button type="button" class="toggle-read-status" onclick="toggleReadStatus('${book.id}')">Toggle Read Status</button>
-            <button type="button" class="book-delete" onclick="deleteBook('${book.id}')">Delete Book</button>
+            <div class="button-container">
+                <button type="button" class="toggle-read-status" onclick="toggleReadStatus('${book.id}')">Toggle Read Status</button>
+                <button type="button" class="book-delete" onclick="deleteBook('${book.id}')">Delete Book</button>
+            </div>
         </div>
         `
 
@@ -89,6 +91,5 @@ function deleteBook(id) {
 }
 
 // to do later
-// 1 clean up js
-// 2 make the html pretty
-// 3 change the file to typescript
+// 1 finish UI
+// 2 change the file to typescript
