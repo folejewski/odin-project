@@ -19,6 +19,7 @@ https://folejewski.github.io/odin-project/form-page/index.html
 #### Built with
 - HTML
 - CSS
+- Vanilla JavaScript
 
 #### Assignment
 https://www.theodinproject.com/lessons/node-path-intermediate-html-and-css-sign-up-form
@@ -41,10 +42,36 @@ https://folejewski.github.io/odin-project/admin-page/index.html
 #### Built with
 - HTML
 - CSS
-- Vanilla JavaScript
 
-#### Goal
+#### Assignment
 https://www.theodinproject.com/lessons/node-path-intermediate-html-and-css-admin-dashboard
 
 #### My Solution
 ![screenshot](admin-page/screenshots/Screenshot_1.png)
+
+## JavaScript
+
+### Library
+
+A book library app built to practice JavaScript objects, constructors, and DOM manipulation.
+
+#### Live preview
+https://folejewski.github.io/odin-project/library/index.html
+
+#### What I practiced
+- Constructor functions and `new.target` guard
+- Prototype methods (`Book.prototype.toggleRead`)
+- `crypto.randomUUID()` for stable object identifiers
+- DOM manipulation with `createElement`, `innerHTML`, and event delegation via `onclick`
+- `FormData` API for reading form values
+
+#### Built with
+- HTML
+- CSS
+- Vanilla JavaScript
+
+#### Assignment
+https://www.theodinproject.com/lessons/node-path-javascript-library
+
+#### My Solution
+![screenshot](library/screenshots/Screenshot_1.png)
