@@ -90,6 +90,3 @@ function deleteBook(id) {
     }
 }
 
-// to do later
-// 1 finish UI
-// 2 change the file to typescript

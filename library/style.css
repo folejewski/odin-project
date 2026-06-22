@@ -1,43 +1,73 @@
-/* reset */
 @font-face {
     font-family: "Playwrite";
     src: url(./assets/PlaywritePL-VariableFont_wght.ttf) format("truetype");
 }
 
+@font-face {
+    font-family: "Roboto";
+    src: url(./assets/Roboto-VariableFont_wdth\,wght.ttf) format("truetype");
+}
+
+/* reset */
 *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
 }
 
-:root {
-    font-size: 16px;
-    font-family: Playwrite, sans-serif;
-}
-
-body { 
-    line-height: 1.5; 
-    height: 100vh;
+body {
+    line-height: 1.5;
+    min-height: 100vh;
+    background-color: #f5f5f0;
+    color: #1a1a1a;
+    padding: 2rem;
 }
 
 input, button { font: inherit; }
+
+/* base font for everything */
+* {
+    font-family: Roboto, sans-serif;
+}
+
+/* Playwrite only where it adds character */
+
+.book-card > div > p,
+.book-card > div > h2,
+.input input[type="text"],
+.input input[type="number"] {
+    font-family: Playwrite, sans-serif;
+}
 
 /* reset end */
 
 header {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 1.5rem;
+    align-items: center;
+    margin-bottom: 2rem;
 }
 
-.input {
-    display: flex;
-    flex-direction: column;
+header button {
+    background: #fff;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    padding: 0.5rem 1.25rem;
+    cursor: pointer;
+    font-size: 0.9rem;
 }
+
+header button:hover {
+    background: #f3f4f6;
+}
+
+/* form */
 
 .form {
     display: none;
-    border: 1px solid black;
-    border-radius: 5px;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.75rem;
+    margin-bottom: 2rem;
 }
 
 #bookForm {
@@ -49,52 +79,171 @@ header {
         "pages    wasRead"
         "submit   submit";
     gap: 1rem;
-    padding: 1rem;
+    padding: 1.5rem;
 }
 
-h2 { 
-    grid-area: heading; 
+#bookForm h2 {
+    grid-area: heading;
+    margin-bottom: 0.25rem;
 }
 
-.input:nth-child(2) {
-    grid-area: author; 
+.input {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
 }
 
-.input:nth-child(3) {
-    grid-area: title;
+.input label {
+    font-size: 0.85rem;
+    color: #6b7280;
 }
 
-.input:nth-child(4) {
-    grid-area: pages;
+.input input[type="text"],
+.input input[type="number"] {
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.95rem;
+    background: #fff;
 }
+
+.input input[type="text"]:focus,
+.input input[type="number"]:focus {
+    outline: none;
+    border-color: #6b7280;
+}
+
+.input:nth-child(2) { grid-area: author; }
+.input:nth-child(3) { grid-area: title; }
+.input:nth-child(4) { grid-area: pages; }
 
 .input:nth-child(5) {
-    grid-area: wasRead; 
+    grid-area: wasRead;
     flex-direction: row;
     align-items: center;
-    gap: 1rem;
+    gap: 0.75rem;
 }
 
-input[type="submit"] { grid-area: submit; }
+.input:nth-child(5) label {
+    font-size: 0.95rem;
+    color: #1a1a1a;
+}
+
+.input:nth-child(5) input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
+input[type="submit"] {
+    grid-area: submit;
+    background: #1a1a1a;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 0.6rem 1.5rem;
+    font-size: 0.95rem;
+    cursor: pointer;
+    justify-self: start;
+}
+
+input[type="submit"]:hover {
+    background: #333;
+}
+
+/* library grid */
 
 .library-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-}
-
-.book-card {
-    border: 1px solid black;
-    border-radius: 5px;
-    display: flex;
-    flex-direction: column;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 1rem;
 }
 
-.book-card * {
-    padding: 0.25rem;
+.library-grid > p {
+    color: #6b7280;
+    font-size: 0.95rem;
+}
+
+/* book cards */
+
+.book-card {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.book-card h2 {
+    font-size: 0.8rem;
+    color: #9ca3af;
+    font-family: sans-serif;
+    font-weight: 400;
+    margin-bottom: 0.25rem;
+}
+
+.book-card > div > p:first-child {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 0.15rem;
+}
+
+.book-card > div > p {
+    font-size: 0.9rem;
+    color: #6b7280;
+}
+
+.book-card .read-status {
+    display: inline-block;
+    font-size: 0.8rem;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin: 0.5rem 0;
+    font-family: sans-serif;
+}
+
+.book-card .read-status.read {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.book-card .read-status.unread {
+    background: #f3f4f6;
+    color: #6b7280;
 }
 
 .button-container {
     display: flex;
-    gap: 1rem;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+}
+
+.toggle-read-status {
+    flex: 1;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 0.4rem 0.75rem;
+    font-size: 0.85rem;
+    cursor: pointer;
+}
+
+.toggle-read-status:hover {
+    background: #f3f4f6;
+}
+
+.book-delete {
+    background: #fff;
+    border: 1px solid #fecaca;
+    border-radius: 8px;
+    padding: 0.4rem 0.75rem;
+    font-size: 0.85rem;
+    color: #dc2626;
+    cursor: pointer;
+}
+
+.book-delete:hover {
+    background: #fef2f2;
 }
