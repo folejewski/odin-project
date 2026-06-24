@@ -1,0 +1,67 @@
+@font-face {
+    font-family: "Roboto";
+    src: url(./assets/Roboto-VariableFont_wdth\,wght.ttf) format("truetype");
+}
+
+:root {
+  --first-player-font: #0C447C;
+  --first-player-background: #E6F1FB;
+  --first-player-border: #85B7EB;
+  --second-player-font: #633806;
+  --second-player-background: #FAEEDA;
+  --second-player-border: #EF9F27;
+  --neutral-background: #f1f1f1;
+  --neutral-border-and-font: #888;
+  font-size: 16px;
+}
+
+* {
+    font-family: Roboto, sans-serif;
+}
+
+body {
+    line-height: 1.5;
+    min-height: 100vh;
+    background-color: var(--neutral-background);
+    padding: 2rem;
+}
+
+.score-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2rem;
+    gap: 1rem;
+}
+
+.score-card div{
+    text-align: center;
+    border: 1px solid;
+    border-radius: 0.75rem;
+    padding: 0.5rem 2rem;
+    p:first-child {
+        font-size: 1rem;
+    }
+    p:nth-child(2) {
+        font-size: 0.8rem;
+    }
+    p:last-child {
+        font-size: 1.8rem;
+    }
+}
+
+.player-one-score {
+    color: var(--first-player-font);
+    background-color: var(--first-player-background);
+    border-color: var(--first-player-border);
+}
+
+.player-two-score {
+    color: var(--second-player-font);
+    background-color: var(--second-player-background);
+    border-color: var(--second-player-border);
+}
+
+.draw-score {
+    color: var(--neutral-border-and-font);
+}
