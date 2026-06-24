@@ -6,10 +6,8 @@
 :root {
   --first-player-font: #0C447C;
   --first-player-background: #E6F1FB;
-  --first-player-border: #85B7EB;
   --second-player-font: #633806;
   --second-player-background: #FAEEDA;
-  --second-player-border: #EF9F27;
   --neutral-background: #f1f1f1;
   --neutral-border-and-font: #888;
   font-size: 16px;
@@ -53,15 +51,74 @@ body {
 .player-one-score {
     color: var(--first-player-font);
     background-color: var(--first-player-background);
-    border-color: var(--first-player-border);
 }
 
 .player-two-score {
     color: var(--second-player-font);
     background-color: var(--second-player-background);
-    border-color: var(--second-player-border);
 }
 
 .draw-score {
     color: var(--neutral-border-and-font);
+}
+
+.current-turn {
+    width: fit-content;
+    margin: 0 auto;
+    margin-bottom: 2rem;
+    text-align: center;
+    border: 1px solid;
+    border-radius: 0.75rem;
+    padding: 0.5rem 1rem;
+    color: var(--first-player-font);
+    background-color: var(--first-player-background);
+}
+
+.board {
+    display: grid;
+    grid-template: repeat(3, 100px) / repeat(3, 100px);
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    div {
+        width: 100%;
+        height: 100%;
+        border: 1px solid var(--neutral-border-and-font);
+        border-radius: 0.75rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+    }
+    [data-index="0"]{
+        color: var(--first-player-font);
+        background-color: var(--first-player-background);
+        border-color: var(--first-player-font);
+    }
+    [data-index="1"]{
+        color: var(--second-player-font);
+        background-color: var(--second-player-background);
+        border-color: var(--second-player-font);
+    }
+}
+
+.reset-button {
+    display: flex;
+    justify-content: center;
+}
+
+.reset-button button {
+    display: inline-block;
+    text-align: center;
+    border: 1px solid;
+    border-radius: 0.75rem;
+    padding: 0.5rem 1rem;
+    color: var(--first-player-font);
+    background-color: var(--first-player-background);
+    margin-bottom: 1rem;
+    &:hover {
+        cursor: pointer;
+    }
 }
