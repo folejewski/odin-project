@@ -39,7 +39,7 @@ function createBoard() {
     // can be deleted later
     const getBoard = () => board;
 
-    return { placeMarker, checkForWin, resetBoard, getBoard };
+    return { placeMarker, checkForWin, checkForDraw, resetBoard, getBoard };
 }
 
 // for chreating players
@@ -68,12 +68,14 @@ const gameController = (() => {
         console.log(`${firstPlayer.name}'s points: ${firstPlayerPoints}`)
         console.log(`${secondPlayer.name}'s points: ${secondPlayerPoints}`)
         console.log(`Number of draws : ${draws}`)
-        let marker = prompt(`${firstPlayer.name}'s turn. Choose number 1-9`)
     }
 
     const resetGame = () => {
         board.resetBoard();
-        gameController.changeTurn();
+        console.log(`${firstPlayer.name}'s points: ${firstPlayerPoints}`)
+        console.log(`${secondPlayer.name}'s points: ${secondPlayerPoints}`)
+        console.log(`Number of draws : ${draws}`)
+        changeTurn();
         if (firstPlayerTurn) {
             console.log(`${firstPlayer.name}'s turn `)
         } else {
@@ -84,14 +86,25 @@ const gameController = (() => {
     const changeTurn = () => {
         firstPlayerTurn = !firstPlayerTurn;
     }
+
+    const playTurn = (position) => {
+        board.placeMarker(position, firstPlayerTurn ? "X" : "O");
+        if (board.checkForWin()) {
+            if (firstPlayerTurn) {
+                firstPlayerPoints++;
+                console.log(`${firstPlayer.name} wins!`);
+            } else {
+                secondPlayerPoints++;
+                console.log(`${secondPlayer.name} wins!`);
+            }
+            resetGame();
+        } else if (board.checkForDraw()){
+            draws++;
+            resetGame();
+        } else {
+            changeTurn();
+        }
+    }
     
-  return { board, firstPlayer, secondPlayer, firstPlayerTurn, firstPlayerPoints, secondPlayerPoints, draws, startGame, resetGame, changeTurn};
+  return { board, firstPlayer, secondPlayer, firstPlayerTurn, firstPlayerPoints, secondPlayerPoints, draws, startGame, resetGame, changeTurn, playTurn};
 })();
-
-gameController.startGame();
-
-while (!checkForWin() && !checkForWin()) {
-    placeMarker(parseInt(gameController.marker), gameController.firstPlayerTurn ? "X" : "O")
-    gameController.board.checkForWin();
-    gameController.board.checkForDraw();
-}
