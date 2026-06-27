@@ -101,16 +101,6 @@ body {
         justify-content: center;
         cursor: pointer;
     }
-    [data-index="0"]{
-        color: var(--first-player-font);
-        background-color: var(--first-player-background);
-        border-color: var(--first-player-font);
-    }
-    [data-index="1"]{
-        color: var(--second-player-font);
-        background-color: var(--second-player-background);
-        border-color: var(--second-player-font);
-    }
 }
 
 .reset-button {

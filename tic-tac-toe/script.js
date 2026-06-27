@@ -6,8 +6,9 @@ function createBoard() {
     const placeMarker = (position, marker) => {
         if (board[position] === undefined) {
             board[position] = marker;
+            return true;
         } else {
-            console.log("HERE WILL BE THE FUNCTION TO INPUT THE THING AGAIN")
+            return false;
         }
     }
 
@@ -62,6 +63,11 @@ const gameController = (() => {
     let gameOver = false;
     let turnDiv = document.getElementsByClassName("current-turn")[0];
     let resetButton = document.querySelector(".reset-button button");
+    let p1NameEl = document.querySelector(".player-one-score p:first-child");
+    let p1ScoreEl = document.querySelector(".player-one-score p:last-child");
+    let p2NameEl = document.querySelector(".player-two-score p:first-child");
+    let p2ScoreEl = document.querySelector(".player-two-score p:last-child");
+    let drawsEl = document.querySelector(".draw-score p:last-child");
 
     const startGame = () => {
         let name = prompt("What's the first player's name?")
@@ -69,6 +75,8 @@ const gameController = (() => {
         name = prompt("What's the second player's name?")
         secondPlayer = createPlayer(name, "O")
         turnDiv.textContent = `${firstPlayer.name}'s turn`;
+        p1NameEl.textContent = firstPlayer.name;
+        p2NameEl.textContent = secondPlayer.name;
     }
 
     const resetGame = () => {
@@ -101,14 +109,17 @@ const gameController = (() => {
 
     const playTurn = (position) => {
         if (gameOver) return;
-        board.placeMarker(position, firstPlayerTurn ? "X" : "O");
+        const moveMade = board.placeMarker(position, firstPlayerTurn ? "X" : "O");
+        if (!moveMade) return;
         if (board.checkForWin()) {
             if (firstPlayerTurn) {
                 firstPlayerPoints++;
                 turnDiv.textContent = `${firstPlayer.name} wins!`;
+                p1ScoreEl.textContent = firstPlayerPoints;
             } else {
                 secondPlayerPoints++;
                 turnDiv.textContent = `${secondPlayer.name} wins!`;
+                p2ScoreEl.textContent = secondPlayerPoints;
             }
             resetButton.classList.add("button-prompt-color");
             gameOver = true;
@@ -116,6 +127,7 @@ const gameController = (() => {
             draws++;
             turnDiv.textContent = `Draw!`;
             resetButton.classList.add("button-prompt-color");
+            drawsEl.textContent = draws;
             gameOver = true;
         } else {
             changeTurn();
@@ -130,8 +142,17 @@ const displayController = (() => {
     const fillBoard = () => {
         fields.forEach((element) => {
             // if array value is null or undefined it uses empty string instead
-            element.textContent = gameController.board.getBoard()[element.dataset.index] ?? '';
-            // TO DO make it change the background color and color as well depending on the vlue
+            const value = gameController.board.getBoard()[element.dataset.index] ?? '';
+            element.textContent = value;
+            if (value === 'X') {
+                element.classList.add('player-one-turn');
+                element.classList.remove('player-two-turn');
+            } else if (value === 'O') {
+                element.classList.add('player-two-turn');
+                element.classList.remove('player-one-turn');
+            } else {
+                element.classList.remove('player-one-turn', 'player-two-turn');
+            }
         });
     }
     const bindEvents = () => {
@@ -156,5 +177,3 @@ const displayController = (() => {
     gameController.startGame();
     return {  fillBoard, bindEvents, fields};
 })();
-
-// TODO change so it does not ask for name and instead of console logging it updates the board scores
