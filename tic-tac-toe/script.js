@@ -59,52 +59,102 @@ const gameController = (() => {
     let firstPlayerPoints = 0;
     let secondPlayerPoints = 0;
     let draws = 0;
+    let gameOver = false;
+    let turnDiv = document.getElementsByClassName("current-turn")[0];
+    let resetButton = document.querySelector(".reset-button button");
 
     const startGame = () => {
         let name = prompt("What's the first player's name?")
         firstPlayer = createPlayer(name, "X")
         name = prompt("What's the second player's name?")
         secondPlayer = createPlayer(name, "O")
-        console.log(`${firstPlayer.name}'s points: ${firstPlayerPoints}`)
-        console.log(`${secondPlayer.name}'s points: ${secondPlayerPoints}`)
-        console.log(`Number of draws : ${draws}`)
+        turnDiv.textContent = `${firstPlayer.name}'s turn`;
     }
 
     const resetGame = () => {
-        board.resetBoard();
-        console.log(`${firstPlayer.name}'s points: ${firstPlayerPoints}`)
-        console.log(`${secondPlayer.name}'s points: ${secondPlayerPoints}`)
-        console.log(`Number of draws : ${draws}`)
-        changeTurn();
-        if (firstPlayerTurn) {
-            console.log(`${firstPlayer.name}'s turn `)
-        } else {
-            console.log(`${secondPlayer.name}'s turn `)
-        }
+    board.resetBoard();
+    gameOver = false;
+    firstPlayerTurn = !firstPlayerTurn;
+    if (firstPlayerTurn) {
+        turnDiv.classList.remove("player-two-turn");
+        turnDiv.classList.add("player-one-turn");
+        turnDiv.textContent = `${firstPlayer.name}'s turn`;
+    } else {
+        turnDiv.classList.remove("player-one-turn");
+        turnDiv.classList.add("player-two-turn");
+        turnDiv.textContent = `${secondPlayer.name}'s turn`;
     }
+}
 
     const changeTurn = () => {
         firstPlayerTurn = !firstPlayerTurn;
+        if (firstPlayerTurn) {
+            turnDiv.classList.remove("player-two-turn");
+            turnDiv.classList.add("player-one-turn");
+            turnDiv.textContent = `${firstPlayer.name}'s turn`;
+        } else {
+            turnDiv.classList.remove("player-one-turn");
+            turnDiv.classList.add("player-two-turn");
+            turnDiv.textContent = `${secondPlayer.name}'s turn`;
+        }
     }
 
     const playTurn = (position) => {
+        if (gameOver) return;
         board.placeMarker(position, firstPlayerTurn ? "X" : "O");
         if (board.checkForWin()) {
             if (firstPlayerTurn) {
                 firstPlayerPoints++;
-                console.log(`${firstPlayer.name} wins!`);
+                turnDiv.textContent = `${firstPlayer.name} wins!`;
             } else {
                 secondPlayerPoints++;
-                console.log(`${secondPlayer.name} wins!`);
+                turnDiv.textContent = `${secondPlayer.name} wins!`;
             }
-            resetGame();
+            resetButton.classList.add("button-prompt-color");
+            gameOver = true;
         } else if (board.checkForDraw()){
             draws++;
-            resetGame();
+            turnDiv.textContent = `Draw!`;
+            resetButton.classList.add("button-prompt-color");
+            gameOver = true;
         } else {
             changeTurn();
         }
     }
     
-  return { board, firstPlayer, secondPlayer, firstPlayerTurn, firstPlayerPoints, secondPlayerPoints, draws, startGame, resetGame, changeTurn, playTurn};
+  return { board, firstPlayer, secondPlayer, firstPlayerTurn, firstPlayerPoints, secondPlayerPoints, draws, resetButton, gameOver, startGame, resetGame, changeTurn, playTurn};
 })();
+
+const displayController = (() => {
+    const fields = document.querySelectorAll("[data-index]");
+    const fillBoard = () => {
+        fields.forEach((element) => {
+            // if array value is null or undefined it uses empty string instead
+            element.textContent = gameController.board.getBoard()[element.dataset.index] ?? '';
+            // TO DO make it change the background color and color as well depending on the vlue
+        });
+    }
+    const bindEvents = () => {
+        fields.forEach((element) => {
+            element.addEventListener('click', () => {
+                gameController.playTurn(element.dataset.index);
+                fillBoard();
+            });
+        });
+    };
+
+    const resetBoard = () => {
+        gameController.resetButton.addEventListener('click', () => {
+            gameController.resetGame();
+            fillBoard();
+            gameController.resetButton.classList.remove("button-prompt-color");
+        });
+    };
+
+    bindEvents();
+    resetBoard();
+    gameController.startGame();
+    return {  fillBoard, bindEvents, fields};
+})();
+
+// TODO change so it does not ask for name and instead of console logging it updates the board scores

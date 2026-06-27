@@ -10,6 +10,7 @@
   --second-player-background: #FAEEDA;
   --neutral-background: #f1f1f1;
   --neutral-border-and-font: #888;
+  --prompt-background: #FF6961;
   font-size: 16px;
 }
 
@@ -70,8 +71,16 @@ body {
     border: 1px solid;
     border-radius: 0.75rem;
     padding: 0.5rem 1rem;
+}
+
+.player-one-turn {
     color: var(--first-player-font);
     background-color: var(--first-player-background);
+}
+
+.player-two-turn {
+    color: var(--second-player-font);
+    background-color: var(--second-player-background);
 }
 
 .board {
@@ -115,10 +124,13 @@ body {
     border: 1px solid;
     border-radius: 0.75rem;
     padding: 0.5rem 1rem;
-    color: var(--first-player-font);
-    background-color: var(--first-player-background);
+    color: var(--neutral-border-and-font);
     margin-bottom: 1rem;
     &:hover {
         cursor: pointer;
     }
+}
+
+.button-prompt-color {
+    background-color: var(--prompt-background);
 }
