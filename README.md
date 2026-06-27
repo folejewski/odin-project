@@ -75,3 +75,29 @@ https://www.theodinproject.com/lessons/node-path-javascript-library
 
 #### My Solution
 ![screenshot](library/screenshots/Screenshot_1.png)
+
+### Tic Tac Toe
+
+A two-player tic tac toe game built to practice factory functions and the module pattern.
+
+#### Live preview
+https://folejewski.github.io/odin-project/tic-tac-toe/index.html
+
+#### What I practiced
+- Factory functions and IIFE to minimise global code
+- Separating game logic (`gameController`) from DOM manipulation (`displayController`)
+- Closures for private state (board array, scores, turn tracking)
+- Event-driven game flow without loops, just click handlers reacting to state
+- Dynamic DOM updates (cell colours, turn indicator, score tracking)
+
+#### Built with
+- HTML
+- CSS
+- Vanilla JavaScript
+
+#### Assignment
+https://www.theodinproject.com/lessons/node-path-javascript-tic-tac-toe
+
+#### My Solution
+![screenshot](tic-tac-toe/screenshots/Screenshot_1.png)
+![screenshot](tic-tac-toe/screenshots/Screenshot_2.png)

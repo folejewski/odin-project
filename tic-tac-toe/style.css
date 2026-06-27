@@ -4,14 +4,15 @@
 }
 
 :root {
-  --first-player-font: #0C447C;
-  --first-player-background: #E6F1FB;
-  --second-player-font: #633806;
-  --second-player-background: #FAEEDA;
-  --neutral-background: #f1f1f1;
-  --neutral-border-and-font: #888;
-  --prompt-background: #FF6961;
-  font-size: 16px;
+    --start-background: #FFFFFF;
+    --first-player-font: #0C447C;
+    --first-player-background: #E6F1FB;
+    --second-player-font: #633806;
+    --second-player-background: #FAEEDA;
+    --neutral-background: #f1f1f1;
+    --neutral-border-and-font: #888;
+    --prompt-background: #FF6961;
+    font-size: 16px;
 }
 
 * {
@@ -23,6 +24,60 @@ body {
     min-height: 100vh;
     background-color: var(--neutral-background);
     padding: 2rem;
+}
+
+.start-screen {
+    max-width: 500px;
+    margin: 0 auto;
+    background-color: var(--start-background);
+    border: 1px solid var(--neutral-border-and-font);
+    border-radius: 1.5rem;
+    padding: 2.5rem;
+}
+
+.start-screen h1 {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.start-screen p {
+    text-align: center;
+    color: var(--neutral-border-and-font);
+    margin-bottom: 2rem;
+}
+
+.start-screen label {
+    display: block;
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+}
+
+.start-screen .p1-label { color: var(--first-player-font); }
+.start-screen .p2-label { color: var(--second-player-font); }
+
+.start-screen input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--neutral-border-and-font);
+    border-radius: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.start-screen button {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--neutral-border-and-font);
+    border-radius: 0.75rem;
+    cursor: pointer;
+    background: white;
+}
+
+.start-screen button:hover {
+    background: var(--neutral-background);
+}
+
+.main {
+    display: none;
 }
 
 .score-card {

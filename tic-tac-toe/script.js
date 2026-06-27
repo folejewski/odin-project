@@ -1,4 +1,4 @@
-// First - board
+// Board
 
 function createBoard() {
     let board = new Array(9); 
@@ -37,20 +37,18 @@ function createBoard() {
         board = new Array(9);
     }
 
-    // can be deleted later
     const getBoard = () => board;
 
     return { placeMarker, checkForWin, checkForDraw, resetBoard, getBoard };
 }
 
-// for chreating players
+// Players
 
 function createPlayer(name, marker) {
     return { name, marker };
-    // should it not also have this palyer's points? like in return return { name, marker, points = 0 };?
 }
 
-// for game manageement 
+// Game manager / controller 
 
 const gameController = (() => {
     let board = createBoard();
@@ -70,29 +68,31 @@ const gameController = (() => {
     let drawsEl = document.querySelector(".draw-score p:last-child");
 
     const startGame = () => {
-        let name = prompt("What's the first player's name?")
-        firstPlayer = createPlayer(name, "X")
-        name = prompt("What's the second player's name?")
-        secondPlayer = createPlayer(name, "O")
-        turnDiv.textContent = `${firstPlayer.name}'s turn`;
+        const name1 = document.getElementById('player-one-input').value || 'Player 1';
+        const name2 = document.getElementById('player-two-input').value || 'Player 2';
+        firstPlayer = createPlayer(name1, "X");
+        secondPlayer = createPlayer(name2, "O");
+        document.querySelector('.start-screen').style.display = 'none';
+        document.querySelector('.main').style.display = 'block';
         p1NameEl.textContent = firstPlayer.name;
         p2NameEl.textContent = secondPlayer.name;
+        turnDiv.textContent = `${firstPlayer.name}'s turn`;
     }
 
     const resetGame = () => {
-    board.resetBoard();
-    gameOver = false;
-    firstPlayerTurn = !firstPlayerTurn;
-    if (firstPlayerTurn) {
-        turnDiv.classList.remove("player-two-turn");
-        turnDiv.classList.add("player-one-turn");
-        turnDiv.textContent = `${firstPlayer.name}'s turn`;
-    } else {
-        turnDiv.classList.remove("player-one-turn");
-        turnDiv.classList.add("player-two-turn");
-        turnDiv.textContent = `${secondPlayer.name}'s turn`;
+        board.resetBoard();
+        gameOver = false;
+        firstPlayerTurn = !firstPlayerTurn;
+        if (firstPlayerTurn) {
+            turnDiv.classList.remove("player-two-turn");
+            turnDiv.classList.add("player-one-turn");
+            turnDiv.textContent = `${firstPlayer.name}'s turn`;
+        } else {
+            turnDiv.classList.remove("player-one-turn");
+            turnDiv.classList.add("player-two-turn");
+            turnDiv.textContent = `${secondPlayer.name}'s turn`;
+        }
     }
-}
 
     const changeTurn = () => {
         firstPlayerTurn = !firstPlayerTurn;
@@ -137,6 +137,8 @@ const gameController = (() => {
   return { board, firstPlayer, secondPlayer, firstPlayerTurn, firstPlayerPoints, secondPlayerPoints, draws, resetButton, gameOver, startGame, resetGame, changeTurn, playTurn};
 })();
 
+// Display manager / controller
+
 const displayController = (() => {
     const fields = document.querySelectorAll("[data-index]");
     const fillBoard = () => {
@@ -172,8 +174,14 @@ const displayController = (() => {
         });
     };
 
+    const startScreen = () => {
+        document.getElementById('start-button').addEventListener('click', () => {
+            gameController.startGame();
+        });
+    };
+
     bindEvents();
     resetBoard();
-    gameController.startGame();
+    startScreen();
     return {  fillBoard, bindEvents, fields};
 })();
