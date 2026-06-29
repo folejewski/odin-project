@@ -1,0 +1,237 @@
+@font-face {
+    font-family: "Lato";
+    src: url(../assets/Lato-Regular.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: "Playfair";
+    src: url(../assets/PlayfairDisplay-Regular.ttf) format("truetype");
+}
+
+:root {
+    --color-dark: #2C2C2A;
+    --color-light: #FAF7F2;
+    --color-amber: #FAC775;
+    --color-amber-dark: #EF9F27;
+    --color-amber-darker: #854F0B;
+    --color-amber-darkest: #633806;
+    --color-gray: #D3D1C7;
+    --color-gray-mid: #888780;
+    --color-gray-light: #F1EFE8;
+    --color-text-muted: #5F5E5A;
+    --color-text-light: #B4B2A9;
+    --color-white: #fff;
+}
+
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    color: var(--color-dark);
+    background: var(--color-light);
+}
+
+header {
+    background: var(--color-dark);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+}
+
+.nav-brand {
+    font-family: 'Playfair', serif;
+    color: var(--color-amber);
+    font-size: 1.2rem;
+    letter-spacing: 0.5px;
+}
+
+nav {
+    display: flex;
+    gap: 0;
+    margin-left: auto;
+}
+
+nav button {
+    background: none;
+    border: none;
+    color: var(--color-gray);
+    font-family: 'Lato', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+}
+
+nav button:hover {
+    color: var(--color-amber);
+}
+
+.hero {
+    background: var(--color-dark);
+    padding: 5rem 2rem;
+    text-align: center;
+    border-bottom: 3px solid var(--color-amber-dark);
+}
+
+.hero-location {
+    color: var(--color-text-muted);
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+}
+
+.hero h1 {
+    font-family: 'Playfair', serif;
+    color: var(--color-light);
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.hero h1 em {
+    color: var(--color-amber);
+    font-style: italic;
+}
+
+.hero-divider {
+    width: 40px;
+    height: 2px;
+    background: var(--color-amber-dark);
+    margin: 1rem auto;
+}
+
+.hero-sub {
+    color: var(--color-text-muted);
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    margin-bottom: 1.5rem;
+}
+
+.hero-tag {
+    display: inline-block;
+    border: 1px solid var(--color-amber-dark);
+    color: var(--color-amber);
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 0.5rem 1.2rem;
+}
+
+.about-section, .menu-section, .contact-section {
+    padding: 3rem 2rem;
+    max-width: 680px;
+    margin: 0 auto;
+}
+
+.about-section h2, .menu-section h2, .contact-section h2 {
+    font-family: 'Playfair', serif;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.section-divider {
+    width: 40px;
+    height: 2px;
+    background: var(--color-amber-dark);
+    margin: 1rem auto 2rem;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.about-block {
+    border-left: 2px solid var(--color-amber-dark);
+    padding-left: 1rem;
+}
+
+.about-block h3 {
+    font-family: 'Playfair', serif;
+    font-size: 1rem;
+    color: var(--color-amber-darkest);
+    margin-bottom: 0.5rem;
+}
+
+.about-block p {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+}
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.menu-item {
+    background: var(--color-white);
+    border: 0.5px solid var(--color-gray);
+    padding: 1.25rem;
+}
+
+.menu-item-name {
+    font-family: 'Playfair', serif;
+    font-size: 1rem;
+    color: var(--color-dark);
+    margin-bottom: 4px;
+}
+
+.menu-item-desc {
+    font-size: 0.75rem;
+    color: var(--color-gray-mid);
+    line-height: 1.6;
+    margin-bottom: 0.75rem;
+}
+
+.menu-item-price {
+    font-size: 0.85rem;
+    color: var(--color-amber-darker);
+}
+
+.contact-block {
+    background: var(--color-white);
+    border: 0.5px solid var(--color-gray);
+    padding: 2rem;
+    margin-top: 2rem;
+}
+
+.contact-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 0.75rem 0;
+    border-bottom: 0.5px solid var(--color-gray-light);
+}
+
+.contact-row:last-child {
+    border-bottom: none;
+}
+
+.contact-label {
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--color-gray-mid);
+    min-width: 100px;
+}
+
+.contact-value {
+    font-size: 0.75rem;
+    color: var(--color-dark)
+}
+
+.contact-note {
+    text-align: center;
+    font-size: 0.75rem;
+    color: var(--color-gray-mid);
+    margin-top: 1.5rem;
+    font-style: italic;
+}
